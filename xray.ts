@@ -10,7 +10,7 @@ export type Observable = (
 export type Xray = (
   promises: Promise<any>[],
   observer: Observer,
-) => Promise<any>
+) => Promise<any[]>
 
 export const observable: Observable = (promises, observer) =>
   promises.map(( p ) => 
@@ -23,5 +23,5 @@ export const observable: Observable = (promises, observer) =>
 export const xray: Xray = (promises, observer) => {
   const observablePromises = observable(promises, observer)
 
-  await Promise.all(observablePromises)
+  return Promise.all(observablePromises)
 }

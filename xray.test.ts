@@ -8,13 +8,10 @@ describe('Xray', () => {
       new Promise((resolve) => setTimeout(resolve, 100))
     ]
 
-    let counter = 0
-    const observer = {
-      increment: () => counter++
-    }
+    const observer = { increment: jest.fn() }
 
     await xray(promises, observer)
 
-    expect(counter).toBe(3)
+    expect(observer.increment).toBeCalledTimes(3)
   })
 })
