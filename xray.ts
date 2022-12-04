@@ -13,7 +13,7 @@ export type Xray = (
 ) => Promise<any[]>
 
 export const observable: Observable = (promises, observer) =>
-  promises.map(( p ) => 
+  promises.map((p) =>
     p.then((args) => {
       observer.increment()
       return args
