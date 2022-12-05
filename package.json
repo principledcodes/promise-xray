@@ -2,11 +2,16 @@
   "name": "promise-xray",
   "version": "0.1.0",
   "description": "",
-  "main": "index.js",
+  "main": "build/xray.js",
+  "types": "build/xray.d.ts",
+  "files": [
+    "build"
+  ],
   "scripts": {
     "build": "tsc",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
+    "prepublish": "npm run build",
     "test": "jest"
   },
   "author": "Anton Klimenko <antklim@gmail.com>",

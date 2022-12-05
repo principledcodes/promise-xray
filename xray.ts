@@ -1,27 +1,27 @@
 export interface Observer {
-  increment: (step?: number) => void
+  increment: () => void
 }
 
-export type Observable = (
-  promises: Promise<any>[],
+export type Observable = <T>(p: Promise<T>, o: Observer) => Promise<T>
+
+export type Observables = <T>(
+  promises: Promise<T>[],
   observer: Observer,
-) => Promise<any>[]
+) => Promise<T>[]
 
-export type Xray = (
-  promises: Promise<any>[],
+export type Xray = <T>(
+  promises: Promise<T>[],
   observer: Observer,
-) => Promise<any[]>
+) => Promise<Awaited<T>[]>
 
-export const observable: Observable = (promises, observer) =>
-  promises.map((p) =>
-    p.then((args) => {
-      observer.increment()
-      return args
-    })
-  )
+export const observable: Observable = (promise, observer) =>
+  promise.then((result) => {
+    observer.increment()
+    return result
+  })
 
-export const xray: Xray = (promises, observer) => {
-  const observablePromises = observable(promises, observer)
+export const observables: Observables = (promises, observer) =>
+  promises.map((promise) => observable(promise, observer))
 
-  return Promise.all(observablePromises)
-}
+export const xray: Xray = (promises, observer) =>
+  Promise.all(observables(promises, observer))
