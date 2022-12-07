@@ -2,8 +2,8 @@
   "name": "promise-xray",
   "version": "0.1.0",
   "description": "",
-  "main": "build/xray.js",
-  "types": "build/xray.d.ts",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
   "files": [
     "build"
   ],
@@ -17,6 +17,7 @@
   "author": "Anton Klimenko <antklim@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "@tsconfig/node-lts-strictest": "^18.12.1",
     "@types/jest": "^29.2.4",
     "@types/node": "^18.11.10",
     "@typescript-eslint/eslint-plugin": "^5.45.0",
