@@ -9,7 +9,7 @@ export type Observables = <T>(
   observer: Observer,
 ) => Promise<T>[]
 
-export type Xray = <T>(
+export type Scan = <T>(
   promises: Promise<T>[],
   observer: Observer,
 ) => Promise<Awaited<T>[]>
@@ -23,5 +23,5 @@ export const observable: Observable = (promise, observer) =>
 export const observables: Observables = (promises, observer) =>
   promises.map((promise) => observable(promise, observer))
 
-export const xray: Xray = (promises, observer) =>
+export const scan: Scan = (promises, observer) =>
   Promise.all(observables(promises, observer))

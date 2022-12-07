@@ -1,4 +1,4 @@
-import { observables, xray } from './xray'
+import { observables, scan } from './xray'
 
 describe('Xray', () => {
   const observer = { increment: jest.fn() }
@@ -14,14 +14,14 @@ describe('Xray', () => {
     expect(observer.increment).toBeCalledTimes(2)
   })
 
-  test('xray', async () => {
+  test('scan', async () => {
     const promises = [
       Promise.resolve(1),
       Promise.resolve(2),
       Promise.resolve(3),
     ]
 
-    await xray(promises, observer)
+    await scan(promises, observer)
 
     expect(observer.increment).toBeCalledTimes(3)
   })
