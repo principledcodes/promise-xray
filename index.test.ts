@@ -1,4 +1,4 @@
-import { observables, scan } from './xray'
+import { all, allSettled, observables } from '.'
 
 describe('Xray', () => {
   const observer = { increment: jest.fn() }
@@ -14,15 +14,28 @@ describe('Xray', () => {
     expect(observer.increment).toBeCalledTimes(2)
   })
 
-  test('scan', async () => {
+  test('all', async () => {
     const promises = [
       Promise.resolve(1),
       Promise.resolve(2),
       Promise.resolve(3),
     ]
 
-    await scan(promises, observer)
+    await all(promises, observer)
 
     expect(observer.increment).toBeCalledTimes(3)
+  })
+
+  test('allSettled', async () => {
+    const promises = [
+      Promise.resolve('1'),
+      Promise.resolve('2'),
+      Promise.resolve('3'),
+      Promise.resolve('4'),
+    ]
+
+    await allSettled(promises, observer)
+
+    expect(observer.increment).toBeCalledTimes(4)
   })
 })
