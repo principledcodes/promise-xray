@@ -1,5 +1,5 @@
 {
-  "name": "promise-xray",
+  "name": "@elevatepartners/promise-xray",
   "version": "0.1.0",
   "description": "Getting insights of promise chain processing",
   "main": "build/index.js",
