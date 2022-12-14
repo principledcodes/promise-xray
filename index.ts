@@ -23,7 +23,7 @@ export type AllSettled = <T>(
  * Calls observer after promise fulfilled and propagates promise result.
  */
 export const observe: Observable = (promise, observer) =>
-  promise.then((result) => {
+  promise.then((result) => { // TODO: replace with finally
     observer.increment()
     return result
   })
@@ -52,3 +52,13 @@ export const all: All = async (promises, observer) =>
  */
 export const allSettled: AllSettled = async (promises, observer) =>
   await Promise.allSettled(observables(promises, observer))
+
+/**
+ * Type predicate to identify resolved PromiseSettledResult
+ */
+export const isResolved = <T>(result: PromiseSettledResult<T>): result is PromiseFulfilledResult<T> => result.status === 'fulfilled'
+
+/**
+ * Type predicate to identify rejected PromiseSettledResult
+ */
+export const isRejected = <T>(result: PromiseSettledResult<T>): result is PromiseRejectedResult => result.status === 'rejected'
