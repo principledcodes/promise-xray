@@ -23,10 +23,7 @@ export type AllSettled = <T>(
  * Calls observer after promise fulfilled and propagates promise result.
  */
 export const observe: Observable = (promise, observer) =>
-  promise.then((result) => { // TODO: replace with finally
-    observer.increment()
-    return result
-  })
+  promise.finally(() => { observer.increment() })
 
 /**
  * Builds an observable collection of promises. The collection resolves to
