@@ -17,11 +17,13 @@ describe('Xray', () => {
   test('all', async () => {
     const promises = [
       Promise.resolve(1),
-      Promise.resolve(2),
+      Promise.reject(new Error('some error')),
       Promise.resolve(3),
     ]
 
-    await all(promises, observer)
+    try {
+      await all(promises, observer)
+    } catch { /* empty */ }
 
     expect(observer.increment).toBeCalledTimes(3)
   })
@@ -30,7 +32,7 @@ describe('Xray', () => {
     const promises = [
       Promise.resolve('1'),
       Promise.resolve('2'),
-      Promise.resolve('3'),
+      Promise.reject(new Error('some error')),
       Promise.resolve('4'),
     ]
 
