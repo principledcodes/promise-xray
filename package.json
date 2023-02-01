@@ -11,7 +11,6 @@
     "build": "tsc",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "prepublish": "npm run build",
     "release": "semantic-release",
     "test": "jest"
   },
