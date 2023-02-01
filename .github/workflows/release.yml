@@ -1,9 +1,13 @@
 name: Release
 
 on:
-  push:
+  workflow_run:
     branches:
       - main
+    workflows:
+      - NodeJS
+    types:
+      - completed
 
 jobs:
   release:
@@ -27,10 +31,9 @@ jobs:
           key: npm-${{ hashFiles('package-lock.json') }}
           restore-keys: npm-
 
-      - name: Build and Release
+      - name: Release
         run: |
           npm ci
-          npm run build
           npm run release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
