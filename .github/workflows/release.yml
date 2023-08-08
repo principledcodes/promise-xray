@@ -1,13 +1,9 @@
 name: Release
 
 on:
-  workflow_run:
+  push:
     branches:
       - main
-    workflows:
-      - NodeJS
-    types:
-      - completed
 
 jobs:
   release:
@@ -34,6 +30,7 @@ jobs:
       - name: Release
         run: |
           npm ci
+          npm run build
           npm run release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
