@@ -1,5 +1,5 @@
 # promise-xray
-Getting insights of promise chain processing
+Getting insights of promise chain processing.
 
 ## Usage
 
