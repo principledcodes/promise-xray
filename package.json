@@ -1,5 +1,5 @@
 {
-  "name": "@elevatepartners/promise-xray",
+  "name": "@principledcodes/promise-xray",
   "version": "0.1.0",
   "description": "Getting insights of promise chain processing",
   "main": "build/index.js",
@@ -31,10 +31,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ElevatePartners/promise-xray.git"
+    "url": "git+https://github.com/principledcodes/promise-xray.git"
   },
   "bugs": {
-    "url": "https://github.com/ElevatePartners/promise-xray/issues"
+    "url": "https://github.com/principledcodes/promise-xray/issues"
   },
-  "homepage": "https://github.com/ElevatePartners/promise-xray#readme"
+  "homepage": "https://github.com/principledcodes/promise-xray#readme"
 }
