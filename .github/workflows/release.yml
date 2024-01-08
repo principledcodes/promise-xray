@@ -5,6 +5,9 @@ on:
     branches:
       - main
 
+permissions:
+  packages: write
+
 jobs:
   release:
     name: NPM Publish
@@ -19,13 +22,6 @@ jobs:
         with:
           node-version: 18.x
           cache: npm
-
-      - name: Cache Node dependencies
-        uses: actions/cache@v3
-        with:
-          path: ~/.npm
-          key: npm-${{ hashFiles('package-lock.json') }}
-          restore-keys: npm-
 
       - name: Release
         run: |
